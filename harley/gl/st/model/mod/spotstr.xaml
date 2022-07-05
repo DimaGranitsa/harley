@@ -1,0 +1,34 @@
+﻿<Page x:Class="harley.gl.st.model.mod.spotstr"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:harley.gl.st.model.mod"
+      mc:Ignorable="d" 
+  d:DesignHeight="700" d:DesignWidth="1300"
+      Title="spotstr">
+
+    <Grid Background="#23262B">
+       
+       
+     
+
+
+            <ListView BorderBrush="#23262B" Background="#23262B" x:Name="s1" Height="800" VerticalAlignment="Top"  SelectionChanged="spotster_SelectionChanged">
+                <ListView.ItemTemplate >
+                        <DataTemplate >
+                            <StackPanel>
+                            <TextBlock Text="{Binding name}" FontSize="50" Foreground="White" FontFamily="Times New Roman" VerticalAlignment="Top" HorizontalAlignment="Right" ></TextBlock>
+                                <Image  Source="{Binding image}" Height="600" Width="800" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            <Button Background="#23262B" BorderBrush="#23262B" Content="Sport" Foreground="White" FontSize="40" Click="spotster_Click" x:Name="spotster" Height="60" VerticalAlignment="Bottom">
+                
+            </Button>
+        <Frame x:Name="f2" Grid.Row="1" Height="800" VerticalAlignment="Top" Navigated="f2_Navigated"></Frame>
+
+    </Grid>
+</Page>
+

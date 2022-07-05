@@ -1,0 +1,69 @@
+﻿<Page x:Class="harley.gl.st.mod"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:harley.gl.st"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="mod">
+
+    <Grid Background="#23262B">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--название окна-->
+        <Grid Grid.ColumnSpan="3">
+            <Label Content="Мотоциклы" HorizontalAlignment="Center" FontSize="50" Foreground="White" FontFamily="Times New Roman" ></Label>
+        </Grid>
+        <!--1 спотстер листвю с мотоциклами-->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Button   x:Name="m1" BorderBrush="#2E333A" Content="sport" Foreground="White" FontSize="40" Grid.Row="1" Height="60"  Background="#23262B" VerticalAlignment="Bottom"   Click="m1_Click"></Button>
+            <Image Source="/gl/st/model/logo/spotsters.jpg" />
+
+        </Grid>
+            
+       
+        <Grid  Grid.Row="1" Grid.Column="1">
+<Image Source="/gl/st/model/logo/tur.jpg" />
+
+            <Button Content="turing" Foreground="White" FontSize="40"  x:Name="m2" BorderBrush="#2E333A" Grid.Row="1" Height="60"  Background="#23262B" VerticalAlignment="Bottom"   Click="m2_Click"></Button>
+
+        </Grid>
+        <Grid  Grid.Row="1" Grid.Column="2">
+<Image Source="/gl/st/model/logo/tre.jpg" />
+
+            <Button Content="Tri" Foreground="White" FontSize="40"  x:Name="m3" BorderBrush="#2E333A" Grid.Row="1" Height="60"  Background="#23262B" VerticalAlignment="Bottom"   Click="m3_Click"></Button>
+
+        </Grid>
+        <Grid  Grid.Row="2" Grid.Column="0">
+<Image Source="/gl/st/model/logo/turcwo.jpg" />
+
+            <Button Content="CVO" Foreground="White" FontSize="40"  x:Name="m5" BorderBrush="#2E333A" Grid.Row="1" Height="60"  Background="#23262B" VerticalAlignment="Bottom"   Click="m5_Click"></Button>
+
+        </Grid>
+        <Grid  Grid.Row="2" Grid.Column="1">
+<Image Source="/gl/st/model/logo/softeil.jpg" />
+
+            <Button Content="Softeil" Foreground="White" FontSize="40"  x:Name="m4" BorderBrush="#2E333A" Grid.Row="1" Height="60"  Background="#23262B" VerticalAlignment="Bottom"   Click="m4_Click"></Button>
+
+        </Grid>
+        <Grid  Grid.Row="2" Grid.Column="2" >
+           <Image Source="/gl/st/model/logo/pan.jpg" />
+
+        </Grid>
+        <Button Content="Pan Amerika" Foreground="White" FontSize="40"   x:Name="m6" BorderBrush="#2E333A" Grid.Row="2" Grid.Column="3" Height="60"  Background="#23262B" VerticalAlignment="Bottom"   Click="m6_Click"></Button>
+
+        <Frame x:Name="mot1" Grid.ColumnSpan="3" Grid.RowSpan="3" Navigated="mom1_Navigated">
+
+        </Frame>
+    </Grid>
+</Page>

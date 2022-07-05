@@ -1,0 +1,94 @@
+﻿<Page x:Class="harley.gl.st.model.mod.softeil.softeil"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:harley.gl.st.model.mod.softeil"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1300"
+      Title="softeil">
+
+    <Grid  Background="#23262B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition  Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--BorderBrush="#23262B"-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--кнопки мотоциклов-->
+            <Grid Grid.Column="0">
+                <Image Margin="10" Source="/gl/st/model/opmodeli/standart.jpg"  MouseDown="Image_MouseDown" />
+            </Grid>
+            <Grid Grid.Column="1">
+                <Image  Margin="5" Source="/gl/st/model/opmodeli/br.jpg"  MouseDown="Image_MouseDown_1" />
+
+            </Grid>
+            <Grid Grid.Column="2">
+                <Image  Margin="7" Source="/gl/st/model/opmodeli/fb.jpg" MouseDown="Image_MouseDown_2"/>
+
+            </Grid>
+            <Grid Grid.Column="3">
+                <Image  Margin="8" Source="/gl/st/model/opmodeli/fy.jpg" MouseDown="Image_MouseDown_3" />
+
+            </Grid>
+            <Grid Grid.Column="4">
+                <Image Margin="8" Source="/gl/st/model/opmodeli/h.jpg" MouseDown="Image_MouseDown_4"/>
+
+            </Grid>
+            <Grid Grid.Column="5">
+                <Image Margin="8,8,8,0" Source="/gl/st/model/opmodeli/ls.jpg" MouseDown="Image_MouseDown_5" Height="84" VerticalAlignment="Top" />
+
+            </Grid>
+            <Grid Grid.Column="6">
+                <Image Margin="8" Source="/gl/st/model/opmodeli/lt.jpg" MouseDown="Image_MouseDown_6" />
+
+            </Grid>
+            <Grid Grid.Column="7">
+                <Image Margin="8" Source="/gl/st/model/opmodeli/pg.jpg" MouseDown="Image_MouseDown_7" />
+
+
+            </Grid>
+            <Grid Grid.Column="8">
+                <Image Margin="8" Source="/gl/st/model/opmodeli/sb.jpg" MouseDown="Image_MouseDown_8" />
+
+
+
+
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="0">
+            <Label Content="Softeil" FontSize="48" Foreground="White" HorizontalAlignment="Center"></Label>
+        </Grid>
+        <Grid Grid.Row="2">
+            <ListView  BorderBrush="#23262B" Background="#23262B" x:Name="pan"    SelectionChanged="pan_SelectionChanged">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"  Rows="3" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding image}" Width="400" Height="230" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Frame Grid.Row="2"  x:Name="mot1"  Navigated="mot1_Navigated">
+
+        </Frame>
+    </Grid>
+</Page>

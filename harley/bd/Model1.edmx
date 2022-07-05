@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище HarleyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="division">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tip_Moto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="histori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="op" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="login_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="foto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="motor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Foto" Type="nvarchar" MaxLength="50" />
+          <Property Name="OP" Type="nvarchar(max)" />
+          <Property Name="manufacturer" Type="nvarchar(max)" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" />
+          <Property Name="data" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ocom">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="название" Type="nvarchar(max)" />
+          <Property Name="op" Type="nvarchar(max)" />
+          <Property Name="idhistori" Type="int" />
+        </EntityType>
+        <EntityType Name="otzov3">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="motor" Type="nvarchar" MaxLength="50" />
+          <Property Name="mot" Type="nvarchar" MaxLength="50" />
+          <Property Name="otzov2" Type="nvarchar(max)" />
+          <Property Name="otzov5" Type="nvarchar(max)" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="idMotor" Type="int" />
+          <Property Name="idSpotster" Type="int" />
+          <Property Name="idComp" Type="int" />
+        </EntityType>
+        <EntityType Name="spotster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="division" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_ocom_histori">
+          <End Role="histori" Type="Self.histori" Multiplicity="0..1" />
+          <End Role="ocom" Type="Self.ocom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="histori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ocom">
+              <PropertyRef Name="idhistori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otzov3_login_data">
+          <End Role="login_data" Type="Self.login_data" Multiplicity="0..1" />
+          <End Role="otzov3" Type="Self.otzov3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_data">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="otzov3">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otzov3_motor">
+          <End Role="motor" Type="Self.motor" Multiplicity="0..1" />
+          <End Role="otzov3" Type="Self.otzov3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="otzov3">
+              <PropertyRef Name="idMotor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otzov3_ocom">
+          <End Role="ocom" Type="Self.ocom" Multiplicity="0..1" />
+          <End Role="otzov3" Type="Self.otzov3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ocom">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="otzov3">
+              <PropertyRef Name="idComp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otzov3_spotster">
+          <End Role="spotster" Type="Self.spotster" Multiplicity="0..1" />
+          <End Role="otzov3" Type="Self.otzov3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="spotster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="otzov3">
+              <PropertyRef Name="idSpotster" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_spotster_division">
+          <End Role="division" Type="Self.division" Multiplicity="0..1" />
+          <End Role="spotster" Type="Self.spotster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="division">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="spotster">
+              <PropertyRef Name="division" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HarleyModelContainer">
+          <EntitySet Name="division" EntityType="Self.division" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="histori" EntityType="Self.histori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login_data" EntityType="Self.login_data" Schema="dbo" Table="login.data" store:Type="Tables" />
+          <EntitySet Name="motor" EntityType="Self.motor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ocom" EntityType="Self.ocom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="otzov3" EntityType="Self.otzov3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="spotster" EntityType="Self.spotster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ocom_histori" Association="Self.FK_ocom_histori">
+            <End Role="histori" EntitySet="histori" />
+            <End Role="ocom" EntitySet="ocom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otzov3_login_data" Association="Self.FK_otzov3_login_data">
+            <End Role="login_data" EntitySet="login_data" />
+            <End Role="otzov3" EntitySet="otzov3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otzov3_motor" Association="Self.FK_otzov3_motor">
+            <End Role="motor" EntitySet="motor" />
+            <End Role="otzov3" EntitySet="otzov3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otzov3_ocom" Association="Self.FK_otzov3_ocom">
+            <End Role="ocom" EntitySet="ocom" />
+            <End Role="otzov3" EntitySet="otzov3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otzov3_spotster" Association="Self.FK_otzov3_spotster">
+            <End Role="spotster" EntitySet="spotster" />
+            <End Role="otzov3" EntitySet="otzov3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_spotster_division" Association="Self.FK_spotster_division">
+            <End Role="division" EntitySet="division" />
+            <End Role="spotster" EntitySet="spotster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HarleyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="histori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="op" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ocom" Relationship="Self.FK_ocom_histori" FromRole="histori" ToRole="ocom" />
+        </EntityType>
+        <EntityType Name="login_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="foto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="otzov3" Relationship="Self.FK_otzov3_login_data" FromRole="login_data" ToRole="otzov3" />
+        </EntityType>
+        <EntityType Name="motor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Foto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="manufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="otzov3" Relationship="Self.FK_otzov3_motor" FromRole="motor" ToRole="otzov3" />
+        </EntityType>
+        <EntityType Name="ocom">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="название" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="op" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idhistori" Type="Int32" />
+          <NavigationProperty Name="histori" Relationship="Self.FK_ocom_histori" FromRole="ocom" ToRole="histori" />
+          <NavigationProperty Name="otzov3" Relationship="Self.FK_otzov3_ocom" FromRole="ocom" ToRole="otzov3" />
+        </EntityType>
+        <EntityType Name="otzov3">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="motor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mot" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="otzov2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="otzov5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="idMotor" Type="Int32" />
+          <Property Name="idSpotster" Type="Int32" />
+          <Property Name="idComp" Type="Int32" />
+          <NavigationProperty Name="login_data" Relationship="Self.FK_otzov3_login_data" FromRole="otzov3" ToRole="login_data" />
+          <NavigationProperty Name="motor1" Relationship="Self.FK_otzov3_motor" FromRole="otzov3" ToRole="motor" />
+          <NavigationProperty Name="ocom" Relationship="Self.FK_otzov3_ocom" FromRole="otzov3" ToRole="ocom" />
+          <NavigationProperty Name="spotster" Relationship="Self.FK_otzov3_spotster" FromRole="otzov3" ToRole="spotster" />
+        </EntityType>
+        <EntityType Name="spotster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="division" Type="Int32" />
+          <NavigationProperty Name="otzov3" Relationship="Self.FK_otzov3_spotster" FromRole="spotster" ToRole="otzov3" />
+          <NavigationProperty Name="division1" Relationship="HarleyModel.FK_spotster_division" FromRole="spotster" ToRole="division" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_ocom_histori">
+          <End Role="histori" Type="Self.histori" Multiplicity="0..1" />
+          <End Role="ocom" Type="Self.ocom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="histori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ocom">
+              <PropertyRef Name="idhistori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otzov3_login_data">
+          <End Role="login_data" Type="Self.login_data" Multiplicity="0..1" />
+          <End Role="otzov3" Type="Self.otzov3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_data">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="otzov3">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otzov3_motor">
+          <End Role="motor" Type="Self.motor" Multiplicity="0..1" />
+          <End Role="otzov3" Type="Self.otzov3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="otzov3">
+              <PropertyRef Name="idMotor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otzov3_ocom">
+          <End Role="ocom" Type="Self.ocom" Multiplicity="0..1" />
+          <End Role="otzov3" Type="Self.otzov3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ocom">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="otzov3">
+              <PropertyRef Name="idComp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otzov3_spotster">
+          <End Role="spotster" Type="Self.spotster" Multiplicity="0..1" />
+          <End Role="otzov3" Type="Self.otzov3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="spotster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="otzov3">
+              <PropertyRef Name="idSpotster" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HarleyEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="histori" EntityType="Self.histori" />
+          <EntitySet Name="login_data" EntityType="Self.login_data" />
+          <EntitySet Name="motor" EntityType="Self.motor" />
+          <EntitySet Name="ocom" EntityType="Self.ocom" />
+          <EntitySet Name="otzov3" EntityType="Self.otzov3" />
+          <EntitySet Name="spotster" EntityType="Self.spotster" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_ocom_histori" Association="Self.FK_ocom_histori">
+            <End Role="histori" EntitySet="histori" />
+            <End Role="ocom" EntitySet="ocom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otzov3_login_data" Association="Self.FK_otzov3_login_data">
+            <End Role="login_data" EntitySet="login_data" />
+            <End Role="otzov3" EntitySet="otzov3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otzov3_motor" Association="Self.FK_otzov3_motor">
+            <End Role="motor" EntitySet="motor" />
+            <End Role="otzov3" EntitySet="otzov3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otzov3_ocom" Association="Self.FK_otzov3_ocom">
+            <End Role="ocom" EntitySet="ocom" />
+            <End Role="otzov3" EntitySet="otzov3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otzov3_spotster" Association="Self.FK_otzov3_spotster">
+            <End Role="spotster" EntitySet="spotster" />
+            <End Role="otzov3" EntitySet="otzov3" />
+          </AssociationSet>
+          <EntitySet Name="division" EntityType="HarleyModel.division" />
+          <AssociationSet Name="FK_spotster_division" Association="HarleyModel.FK_spotster_division">
+            <End Role="division" EntitySet="division" />
+            <End Role="spotster" EntitySet="spotster" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="division">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tip_Moto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="spotster" Relationship="HarleyModel.FK_spotster_division" FromRole="division" ToRole="spotster" />
+        </EntityType>
+        <Association Name="FK_spotster_division">
+          <End Type="HarleyModel.division" Role="division" Multiplicity="0..1" />
+          <End Type="HarleyModel.spotster" Role="spotster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="division">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="spotster">
+              <PropertyRef Name="division" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HarleyModelContainer" CdmEntityContainer="HarleyEntities6">
+          <EntitySetMapping Name="histori">
+            <EntityTypeMapping TypeName="HarleyModel.histori">
+              <MappingFragment StoreEntitySet="histori">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="op" ColumnName="op" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="login_data">
+            <EntityTypeMapping TypeName="HarleyModel.login_data">
+              <MappingFragment StoreEntitySet="login_data">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="motor">
+            <EntityTypeMapping TypeName="HarleyModel.motor">
+              <MappingFragment StoreEntitySet="motor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="OP" ColumnName="OP" />
+                <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ocom">
+            <EntityTypeMapping TypeName="HarleyModel.ocom">
+              <MappingFragment StoreEntitySet="ocom">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="op" ColumnName="op" />
+                <ScalarProperty Name="idhistori" ColumnName="idhistori" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="otzov3">
+            <EntityTypeMapping TypeName="HarleyModel.otzov3">
+              <MappingFragment StoreEntitySet="otzov3">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="motor" ColumnName="motor" />
+                <ScalarProperty Name="mot" ColumnName="mot" />
+                <ScalarProperty Name="otzov2" ColumnName="otzov2" />
+                <ScalarProperty Name="otzov5" ColumnName="otzov5" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idMotor" ColumnName="idMotor" />
+                <ScalarProperty Name="idSpotster" ColumnName="idSpotster" />
+                <ScalarProperty Name="idComp" ColumnName="idComp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spotster">
+            <EntityTypeMapping TypeName="HarleyModel.spotster">
+              <MappingFragment StoreEntitySet="spotster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="division" ColumnName="division" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HarleyModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="division">
+            <EntityTypeMapping TypeName="HarleyModel.division">
+              <MappingFragment StoreEntitySet="division">
+                <ScalarProperty Name="Tip_Moto" ColumnName="Tip_Moto" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

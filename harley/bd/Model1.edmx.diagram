@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="442c4c48938f412d9a10bedb09e00abf" Name="Diagram1">
+        <EntityTypeShape EntityType="HarleyModel.histori" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="HarleyModel.login_data" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HarleyModel.motor" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HarleyModel.ocom" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HarleyModel.otzov3" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HarleyModel.spotster" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HarleyModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="HarleyModel.FK_ocom_histori" ManuallyRouted="false" />
+        <AssociationConnector Association="HarleyModel.FK_otzov3_login_data" ManuallyRouted="false" />
+        <AssociationConnector Association="HarleyModel.FK_otzov3_motor" ManuallyRouted="false" />
+        <AssociationConnector Association="HarleyModel.FK_otzov3_ocom" ManuallyRouted="false" />
+        <AssociationConnector Association="HarleyModel.FK_otzov3_spotster" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HarleyModel.division" Width="1.5" PointX="0.75" PointY="12.25" />
+        <AssociationConnector Association="HarleyModel.FK_spotster_division" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

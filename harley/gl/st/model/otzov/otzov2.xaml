@@ -1,0 +1,239 @@
+﻿<Page x:Class="harley.gl.st.model.otzov.otzov2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:harley.gl.st.model.otzov"
+      mc:Ignorable="d" 
+     d:DesignHeight="670" d:DesignWidth="1300"
+      Title="otzov1">
+
+    <Grid Background="#23262B" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="отзывы" Foreground="White" FontSize="40" HorizontalAlignment="Center"></Label>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <ListView  BorderBrush="#23262B" Background="#23262B" x:Name="pan"    SelectionChanged="pan_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"   />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Source="{Binding Foto}" Width="100" Height="100" />
+                                <TextBlock Text="{Binding manufacturer}" Foreground="White" FontSize="12"  Width="130"/>
+                                <TextBlock Text="{Binding model}" Foreground="White" FontSize="12" TextWrapping="WrapWithOverflow" Width="100"/>
+                                <TextBlock Text="{Binding data}" Foreground="White" FontSize="12" TextWrapping="WrapWithOverflow" Width="100"/>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="1">
+                <ListView  BorderBrush="#23262B" Background="#23262B" x:Name="pan1"    SelectionChanged="pan1_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"   />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Source="{Binding image}" Width="100" Height="100" />
+                                <TextBlock Text="{Binding name}" Foreground="White" FontSize="12" TextWrapping="WrapWithOverflow"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="500"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid Background="#2E333A">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="41*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="1">
+
+                            <StackPanel Margin="0,0,0,10" VerticalAlignment="Top" Orientation="Horizontal">
+                                <TextBox x:Name="serach_tb" TextChanged="serach_tb_TextChanged" Width="200" Height="29" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                <Button  Margin="0" Background="#2E333A" BorderBrush="#2E333A"  FontSize="18" Width="29"  Height="29" IsEnabled="False">
+                                    <Image Source="/gl/icon/icons8_apple_magnifier_100px.png" />
+
+                                </Button>
+                                <Button HorizontalAlignment="Right" Margin="0" Background="#2E333A" BorderBrush="#2E333A" FontSize="18" Width="29"  Height="29" x:Name="add_students" Click="add_students_Click">
+                                    <Image Source="/gl/icon/icons8_plus_48px.png" />
+
+                                </Button>
+                                <Button HorizontalAlignment="Right" Margin="0" Background="#2E333A" BorderBrush="#2E333A" FontSize="18" Width="29"  Height="29" x:Name="sort_az" Click="sort_az_Click">
+                                    <Image Source="/gl/icon/icons8_alphabetical_sorting_32px.png" />
+
+                                </Button>
+                                <Button HorizontalAlignment="Right" Margin="0" Background="#2E333A" BorderBrush="#2E333A" FontSize="18" Width="29"  Height="29" x:Name="ob_az" Click="ob_az_Click">
+                                    <Image Source="/gl/icon/icons8_update_80px.png" />
+
+
+                                </Button>
+                                <Button HorizontalAlignment="Right" Margin="0" Background="#2E333A" BorderBrush="#2E333A" FontSize="18" Width="29"  Height="29" x:Name="redak" Click="redak_Click">
+                                 <Image Source="/gl/icon/img_arrow.png" />
+
+
+
+                                </Button>
+                            </StackPanel>
+                            <StackPanel>
+                                <ListView   x:Name="std" SelectionChanged="std_SelectionChanged_1" Width="980" HorizontalAlignment="Left" >
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Имя"  DisplayMemberBinding ="{Binding name}"   Width="auto"/>
+                                            <GridViewColumn Header="Двигатель" DisplayMemberBinding ="{Binding motor}"  Width="auto"/>
+                                            <GridViewColumn Header="Мотоцикл" DisplayMemberBinding ="{Binding mot}"  Width="auto"/>
+                                            <GridViewColumn Header="Ваш отзыв про двигатель" DisplayMemberBinding ="{Binding otzov2}"  Width="auto"/>
+                                            <GridViewColumn Header="Ваш отзыв  про мотоцикл " DisplayMemberBinding ="{Binding  otzov5}"  Width="auto" />
+                                            <GridViewColumn Header="tip " DisplayMemberBinding ="{Binding  tip}"  Width="auto" />
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <!--название лайблав-->
+                        <Grid Grid.Column="0" Grid.Row="0">
+                            <Label Content="Ваше имя" Foreground="White" FontSize="30" HorizontalAlignment="Center"></Label>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <Label Content="Двигатель" Foreground="White" FontSize="30" HorizontalAlignment="Center"></Label>
+                        </Grid>
+                        <Grid Grid.Column="2" Grid.Row="0">
+                            <Label Content="Мотоцикл" Foreground="White" FontSize="30" HorizontalAlignment="Center"></Label>
+                        </Grid>
+                        <Grid Grid.Column="3" Grid.Row="0">
+                            <TextBox BorderBrush="#23262B" Background="#23262B" Text="Ваш отзыв про двигатель" Foreground="White" FontSize="23" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"  ></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="4" Grid.Row="0">
+                            <TextBox BorderBrush="#23262B" Background="#23262B" Text="Ваш отзыв про мотоцикл" Foreground="White" FontSize="23" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"  ></TextBox>
+                        </Grid>
+                        <!--текстблоки-->
+                        <Grid Grid.Column="0" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBox Grid.Row="0" Name="name1"></TextBox>
+                            <ComboBox Grid.Row="1" x:Name="ward" Width="150" Height="30" HorizontalAlignment="Left" SelectionChanged="ward_SelectionChanged" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                               
+
+                            </ComboBox>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBox Grid.Row="0" x:Name="motor"></TextBox>
+                            <ComboBox x:Name="motor3" Grid.Row="1" SelectionChanged="motor3_SelectionChanged">
+                                <ComboBoxItem Content="HARLEY DAVIDSON FIRST ENGINE 1905-1908."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON MAGNETO SINGLE ENGINE 1909."/>
+                                <ComboBoxItem Content="Harley Davidson First Model 7 engene 1911 "/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON 61 CI F-HEAD TYPE"/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON 8 VALVE OVAL PORT ENGINE 1924."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON 74 CI. F - HEAD 1929 ENGINE."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON U FLATHEAD TYPE ENGINE 1937 - 1939."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON TWINCAM ENGINE."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON SPORTSTER IRONHEAD ENGINE."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON SPORTSTER EVOLUTION ENGINE 1."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON SPORTSTER EVOLUTION ENGINE 13."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON SPORTSTER EVOLUTION ENGINE 243."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON SPORTSTER EVOLUTION ENGINE 22132."/>
+                                <ComboBoxItem Content="HARLEY DAVIDSON SPORTSTER EVOLUTION ENGINE 134."/>
+                            </ComboBox>
+
+
+
+
+                        </Grid>
+                        <Grid Grid.Column="2" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="mottxt"></TextBox>
+                            <ComboBox x:Name="moto3" Grid.Row="1" SelectionChanged="moto3_SelectionChanged">
+                                <ComboBoxItem Content="Sportster S"/>
+                                <ComboBoxItem Content="SOFTAIL STANDARD"/>
+                                <ComboBoxItem Content="Road King"/>
+                                <ComboBoxItem Content="Breakout"/>
+                                <ComboBoxItem Content="CVO Street Glide"/>
+                                <ComboBoxItem Content="CVO Road Glide"/>
+                                <ComboBoxItem Content="CVO Road Glide limited"/>
+                                <ComboBoxItem Content="Fat Bob"/>
+                                <ComboBoxItem Content="Fat Boy"/>
+                                <ComboBoxItem Content="Street Glide Spaecial"/>
+                                <ComboBoxItem Content="Heritage Classic"/>
+                                <ComboBoxItem Content="Low RIder S"/>
+                                <ComboBoxItem Content="Low RIder ST"/>
+                                <ComboBoxItem Content="Pan America 1250"/>
+                                <ComboBoxItem Content="Pan America 1250 Spacial"/>
+                                <ComboBoxItem Content="Sport Glide"/>
+                                <ComboBoxItem Content="Road King spahel"/>
+                                <ComboBoxItem Content=" Road Glide Spacial"/>
+                                <ComboBoxItem Content=" Road Glide ST"/>
+                                <ComboBoxItem Content=" Road Glide Limited"/>
+                                <ComboBoxItem Content="Street bob"/>
+                                <ComboBoxItem Content="Street Glide ST"/>
+                                <ComboBoxItem Content="Freewheller"/>
+                                <ComboBoxItem Content="TRI GLIDE ULTRA"/>
+                                <ComboBoxItem Content="CVO TRI GLIDE"/>
+                                <ComboBoxItem Content=" ULTRA LIMITED"/>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Grid.Column="3" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="21*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="otzov4" TextChanged="otzov4_TextChanged" Grid.ColumnSpan="2"></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="4" Grid.Row="1">
+                            <TextBox Name="otzov6" TextChanged="otzov6_TextChanged"></TextBox>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,55 @@
+﻿<Page x:Class="harley.gl.st.model.lic.vhod"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:harley.gl.st.model.lic"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1300"
+      Title="vhod">
+
+    <Grid Background="#2E333A">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1">
+
+            <StackPanel Margin="0,0,0,10" VerticalAlignment="Top" Orientation="Horizontal">
+                <TextBox x:Name="serach_tb" TextChanged="serach_tb_TextChanged" Width="200" Height="29" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <Button  Margin="0" Background="#2E333A" BorderBrush="#2E333A"  FontSize="18" Width="29"  Height="29" IsEnabled="False">
+                   <Image Source="/gl/icon/icons8_apple_magnifier_100px.png" />
+
+                </Button>
+                <Button HorizontalAlignment="Right" Margin="0" Background="#2E333A" BorderBrush="#2E333A" FontSize="18" Width="29"  Height="29" x:Name="add_students" Click="add_students_Click">
+                   <Image Source="/gl/icon/icons8_plus_48px.png" />
+
+                </Button>
+                <Button HorizontalAlignment="Right" Margin="0" Background="#2E333A" BorderBrush="#2E333A" FontSize="18" Width="29"  Height="29" x:Name="delete" Click="delete_Click">
+                    <Image Source="/gl/icon/icons8_trash_can_26px.png" />
+
+                </Button>
+                <Button HorizontalAlignment="Right" Margin="0" Background="#2E333A" BorderBrush="#2E333A" FontSize="18" Width="29"  Height="29" x:Name="sort_az" Click="sort_az_Click">
+                  <Image Source="/gl/icon/icons8_alphabetical_sorting_32px.png" />
+
+                </Button>
+                <Button HorizontalAlignment="Right" Margin="0" Background="#2E333A" BorderBrush="#2E333A" FontSize="18" Width="29"  Height="29" x:Name="ob_az" Click="ob_az_Click">
+              <Image Source="/gl/icon/icons8_update_80px.png" />
+
+
+                </Button>
+            </StackPanel>
+            <StackPanel>
+                <ListView   x:Name="std" SelectionChanged="std_SelectionChanged" Width="200" HorizontalAlignment="Left" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Логин"  DisplayMemberBinding ="{Binding login}"   Width="auto"/>
+                            <GridViewColumn Header="Пароль" DisplayMemberBinding ="{Binding password}"  Width="auto"/>
+                            <GridViewColumn Header="Имя" DisplayMemberBinding ="{Binding Name}"  Width="auto"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

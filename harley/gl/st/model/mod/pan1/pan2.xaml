@@ -1,0 +1,58 @@
+﻿<Page x:Class="harley.gl.st.model.mod.pan1.pan2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:harley.gl.st.model.mod.pan1"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1300"
+      Title="pan2">
+
+    <Grid  Background="#23262B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition  Height="120"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--BorderBrush="#23262B"-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                
+
+            </Grid.ColumnDefinitions>
+            <!--кнопки мотоциклов-->
+            <Grid Grid.Column="0">
+                <Image Margin="10"  Source="/gl/st/model/opmodeli/pan1.jpg"   MouseDown="Image_MouseDown" />
+            </Grid>
+            <Grid Grid.Column="1">
+                <Image  Margin="5" Source="/gl/st/model/opmodeli/pan2.jpg"  MouseDown="Image_MouseDown_1" />
+
+            </Grid>
+            
+        </Grid>
+        <Grid Grid.Row="0">
+            <Label Content="Трайк" FontSize="30" Foreground="White" HorizontalAlignment="Center"></Label>
+        </Grid>
+        <Grid Grid.Row="2">
+            <ListView  BorderBrush="#23262B" Background="#23262B" x:Name="pan"    SelectionChanged="pan_SelectionChanged">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid  />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding image}" Width="500" Height="500" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Frame Grid.Row="2"  x:Name="mot1"  Navigated="mot1_Navigated">
+
+        </Frame>
+    </Grid>
+</Page>
